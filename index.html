@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kazi Habibur Rahaman | Machine Learning Engineer</title>
+  <meta name="description" content="Kazi Habibur Rahaman, machine learning engineer working on federated, split and privacy-preserving learning. Master of Applied Computing, Wilfrid Laurier University.">
+  <meta property="og:title" content="Kazi Habibur Rahaman | Machine Learning Engineer">
+  <meta property="og:description" content="Distributed and privacy-preserving machine learning. Published at AAIML 2026.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="wrap nav" aria-label="Main">
+      <a class="nav-name" href="#top">K. H. Rahaman</a>
+      <ul>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero wrap" id="top">
+      <div class="hero-text">
+        <h1>Kazi Habibur<br>Rahaman</h1>
+        <p class="lede">
+          I'm a machine learning engineer who works on training models across many devices
+          without pulling everyone's data into one place. My Federated Split Learning framework,
+          published at AAIML 2026, cuts hardware use on edge devices by up to 58% and their
+          training time by up to 60%.
+        </p>
+        <p class="hero-meta">Master of Applied Computing, Wilfrid Laurier University. Based in Ontario, Canada.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="resume.pdf" download>Download resume</a>
+          <a class="btn" href="mailto:habibur8rahaman@gmail.com">Email me</a>
+        </div>
+      </div>
+
+      <figure class="hero-figure">
+        <svg viewBox="0 0 420 340" role="img" aria-labelledby="figTitle figDesc">
+          <title id="figTitle">Federated Split Learning diagram</title>
+          <desc id="figDesc">Three client devices each run the first layers of a model and send activations to an edge server, which runs the remaining layers. Model weights are then averaged into one shared model.</desc>
+
+          <!-- links: clients to edge -->
+          <path id="p1" class="link" d="M134 60 C 190 60, 190 170, 250 170"/>
+          <path id="p2" class="link" d="M134 170 L 250 170"/>
+          <path id="p3" class="link" d="M134 280 C 190 280, 190 170, 250 170"/>
+          <!-- edge to aggregate -->
+          <path id="p4" class="link link-agg" d="M335 210 L 335 262"/>
+
+          <!-- clients -->
+          <g class="node client" transform="translate(20 30)">
+            <rect width="114" height="60" rx="8"/>
+            <rect class="layer" x="14" y="14" width="10" height="32" rx="2"/>
+            <rect class="layer" x="30" y="14" width="10" height="32" rx="2"/>
+            <text x="48" y="35">Device A</text>
+          </g>
+          <g class="node client" transform="translate(20 140)">
+            <rect width="114" height="60" rx="8"/>
+            <rect class="layer" x="14" y="14" width="10" height="32" rx="2"/>
+            <rect class="layer" x="30" y="14" width="10" height="32" rx="2"/>
+            <text x="48" y="35">Device B</text>
+          </g>
+          <g class="node client" transform="translate(20 250)">
+            <rect width="114" height="60" rx="8"/>
+            <rect class="layer" x="14" y="14" width="10" height="32" rx="2"/>
+            <rect class="layer" x="30" y="14" width="10" height="32" rx="2"/>
+            <text x="48" y="35">Device C</text>
+          </g>
+
+          <!-- edge server -->
+          <g class="node server" transform="translate(250 130)">
+            <rect width="150" height="80" rx="8"/>
+            <rect class="layer layer-srv" x="14" y="14" width="10" height="34" rx="2"/>
+            <rect class="layer layer-srv" x="30" y="14" width="10" height="34" rx="2"/>
+            <rect class="layer layer-srv" x="46" y="14" width="10" height="34" rx="2"/>
+            <rect class="layer layer-srv" x="62" y="14" width="10" height="34" rx="2"/>
+            <text x="82" y="36">Edge</text>
+            <text x="82" y="52">server</text>
+            <text class="small" x="14" y="68">remaining layers</text>
+          </g>
+
+          <!-- aggregate -->
+          <g class="node agg" transform="translate(270 262)">
+            <rect width="130" height="48" rx="24"/>
+            <text x="65" y="29" text-anchor="middle">Shared model</text>
+          </g>
+          <text class="small annot" x="342" y="242">weights averaged</text>
+          <text class="small annot" x="150" y="160">activations</text>
+
+          <!-- moving packets -->
+          <circle class="packet" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.2s"><mpath href="#p1"/></animateMotion></circle>
+          <circle class="packet" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.6s"><mpath href="#p2"/></animateMotion></circle>
+          <circle class="packet" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="2.0s"><mpath href="#p3"/></animateMotion></circle>
+          <circle class="packet packet-agg" r="4"><animateMotion dur="1.3s" repeatCount="indefinite" begin="2.4s"><mpath href="#p4"/></animateMotion></circle>
+        </svg>
+        <figcaption>
+          Figure 1. Federated Split Learning. Each device trains only the first layers of the model
+          and hands the heavier layers to an edge server; the results are averaged into one shared model.
+          Raw data never leaves the device.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- ============ RESEARCH ============ -->
+    <section class="block wrap" id="research" aria-labelledby="research-h">
+      <h2 id="research-h">Research</h2>
+      <div class="block-body">
+        <article class="paper">
+          <h3>Federated Split Learning: offloading on-device training to edge servers</h3>
+          <p class="venue">AAIML 2026 International Conference, published on IEEE Xplore</p>
+          <p>
+            Federated Learning keeps data on users' devices, but every device still has to train the whole
+            model, which is slow and costly on phones and sensors. I combined Federated Learning with
+            Split Learning so that each device trains only the first part of the network and offloads the
+            rest to an edge server. Across CNN models, this reduced hardware use on edge devices by up to
+            about 58% and execution time by up to about 60%, without a noticeable loss in accuracy.
+          </p>
+          <p class="links">
+            <a href="https://ieeexplore.ieee.org/document/11498179">Read the paper</a>
+            <a href="https://github.com/khrahaman/Federated-Split-Learning">View the code</a>
+          </p>
+        </article>
+
+        <article class="paper">
+          <h3>Lightweight Differential Privacy for Federated Learning</h3>
+          <p class="venue">Research at Wilfrid Laurier University</p>
+          <p>
+            Sharing gradients instead of data is not enough on its own: gradient inversion attacks can
+            rebuild training samples from them. I designed a computationally light training workflow
+            that adds Differential Privacy to Federated Learning to close that gap, and separately
+            reproduced the attack itself with InverseFed to measure the risk.
+          </p>
+          <p class="links">
+            <a href="https://github.com/khrahaman/Gradient-Inversion-Attack">View the attack code</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="block wrap" id="projects" aria-labelledby="projects-h">
+      <h2 id="projects-h">Projects</h2>
+      <div class="block-body">
+        <ul class="project-list">
+          <li class="project">
+            <h3><a href="https://github.com/khrahaman/Federated-Split-Learning">Federated Split Learning framework</a></h3>
+            <p>A scalable hybrid of federated and split learning with CNN models. The implementation behind the AAIML 2026 paper.</p>
+            <p class="tech">Python, TensorFlow</p>
+          </li>
+          <li class="project">
+            <h3><a href="https://github.com/khrahaman/Gradient-Inversion-Attack">Gradient inversion attack with InverseFed</a></h3>
+            <p>Reconstructs training images from nothing but the gradients shared during training, showing why distributed learning needs extra privacy protection.</p>
+            <p class="tech">Python, TensorFlow</p>
+          </li>
+          <li class="project">
+            <h3><a href="https://github.com/khrahaman/Federated_Learning">Federated Learning simulation</a></h3>
+            <p>A multi-client simulation that trains LeNet, AlexNet and ResNet models across any number of simulated devices.</p>
+            <p class="tech">Python, TensorFlow</p>
+          </li>
+          <li class="project">
+            <h3><a href="https://github.com/khrahaman/Parallel-Recommendation-System">Parallel recommendation system</a></h3>
+            <p>Splits recommendation lookups into parallel tasks, cutting lookup time by 75% with no loss in accuracy.</p>
+            <p class="tech">Apache Spark, MLlib</p>
+          </li>
+          <li class="project">
+            <h3><a href="https://github.com/khrahaman/chatbot">RAG chatbot</a></h3>
+            <p>A chatbot that answers from your own documents and switches between several open-source LLMs while staying within tight memory limits.</p>
+            <p class="tech">PyTorch, Hugging Face, llama-cpp-python, LangChain</p>
+          </li>
+          <li class="project">
+            <h3><a href="https://github.com/khrahaman/AI_Content_Detector">AI content detector</a></h3>
+            <p>Estimates whether writing was produced by AI, from pasted text, uploaded documents or a blog URL. Built at Genuine Technology and Research.</p>
+            <p class="tech">Open-source LLMs, LlamaIndex, Streamlit</p>
+          </li>
+          <li class="project">
+            <h3><a href="https://github.com/khrahaman/tripadvisor_attraction_spots_review_scraper">Sentiment classification in tourist reviews</a></h3>
+            <p>Compares a CNN, an LSTM and BERT for classifying the sentiment of written reviews.</p>
+            <p class="tech">scikit-learn, Keras</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="block wrap" id="experience" aria-labelledby="experience-h">
+      <h2 id="experience-h">Experience</h2>
+      <div class="block-body">
+        <ol class="timeline">
+          <li>
+            <p class="when">Sep 2024 to Apr 2026</p>
+            <h3>Research Assistant, Wilfrid Laurier University</h3>
+            <p class="where">Waterloo, Ontario</p>
+            <ul>
+              <li>Proposed and built the Federated Split Learning framework, published at AAIML 2026.</li>
+              <li>Designed a lightweight Differential Privacy workflow to defend Federated Learning against gradient inversion attacks.</li>
+            </ul>
+          </li>
+          <li>
+            <p class="when">Mar 2024 to Aug 2024</p>
+            <h3>Junior Software Engineer (Applied AI), Genuine Technology and Research Ltd.</h3>
+            <p class="where">Dhaka, Bangladesh</p>
+            <ul>
+              <li>Built an AI content detector that works on text, uploaded files and blog URLs.</li>
+              <li>Automated LinkedIn engagement by classifying each post's sentiment and reacting to match.</li>
+            </ul>
+          </li>
+        </ol>
+
+        <h3 class="sub">Education</h3>
+        <dl class="edu">
+          <div>
+            <dt>Master of Applied Computing</dt>
+            <dd>Wilfrid Laurier University, Waterloo. Graduated April 2026.</dd>
+          </div>
+          <div>
+            <dt>Bachelor of Computer Science and Engineering</dt>
+            <dd>BRAC University, Dhaka. Graduated January 2024.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="block wrap" id="skills" aria-labelledby="skills-h">
+      <h2 id="skills-h">Skills</h2>
+      <div class="block-body">
+        <dl class="skills">
+          <div><dt>Languages</dt><dd>Python, C++, C, SQL</dd></div>
+          <div><dt>Machine learning</dt><dd>TensorFlow, PyTorch, neural networks, regression models, LLMs, RAG</dd></div>
+          <div><dt>Data</dt><dd>PostgreSQL, SQLAlchemy, data pipelines, data analysis</dd></div>
+          <div><dt>Backend and infrastructure</dt><dd>FastAPI, Streamlit, REST APIs, Docker, Google Cloud</dd></div>
+          <div><dt>Tools and practice</dt><dd>Git, Git LFS, GitHub CI/CD, Agile, system design, object-oriented design</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="block wrap contact" id="contact" aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <div class="block-body">
+        <p class="contact-line">
+          I'm open to machine learning and software engineering roles. The fastest way to reach me is
+          <a href="mailto:habibur8rahaman@gmail.com">habibur8rahaman@gmail.com</a>.
+        </p>
+        <ul class="social">
+          <li><a href="https://github.com/khrahaman">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/khrahaman">LinkedIn</a></li>
+          <li><a href="resume.pdf" download>Resume (PDF)</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap site-footer">
+    <p>&copy; <span id="year">2026</span> Kazi Habibur Rahaman</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
