@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kazi Habibur Rahaman | Machine Learning Engineer</title>
-  <meta name="description" content="Kazi Habibur Rahaman, machine learning engineer working on federated, split and privacy-preserving learning. Master of Applied Computing, Wilfrid Laurier University.">
+  <meta name="description" content="Kazi Habibur Rahaman, machine learning engineer working on federated, split and privacy-preserving learning, LLM applications and speech and NLP pipelines. Master of Applied Computing, Wilfrid Laurier University.">
   <meta property="og:title" content="Kazi Habibur Rahaman | Machine Learning Engineer">
-  <meta property="og:description" content="Distributed and privacy-preserving machine learning. Published at AAIML 2026.">
+  <meta property="og:description" content="Distributed and privacy-preserving machine learning, published at IEEE AAIML 2026, plus applied LLM, speech and NLP projects.">
   <meta property="og:type" content="website">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,6 +24,7 @@
         <li><a href="#research">Research</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
@@ -37,8 +38,8 @@
         <p class="lede">
           I'm a machine learning engineer who works on training models across many devices
           without pulling everyone's data into one place. My Federated Split Learning framework,
-          published at AAIML 2026, cuts hardware use on edge devices by up to 58% and their
-          training time by up to 60%.
+          published at IEEE AAIML 2026, cuts hardware use on edge devices by up to 58% and their
+          training time by up to 60%. I also build applied LLM, speech and NLP tools.
         </p>
         <p class="hero-meta">Master of Applied Computing, Wilfrid Laurier University. Based in Ontario, Canada.</p>
         <div class="actions">
@@ -52,14 +53,11 @@
           <title id="figTitle">Federated Split Learning diagram</title>
           <desc id="figDesc">Three client devices each run the first layers of a model and send activations to an edge server, which runs the remaining layers. Model weights are then averaged into one shared model.</desc>
 
-          <!-- links: clients to edge -->
           <path id="p1" class="link" d="M134 60 C 190 60, 190 170, 250 170"/>
           <path id="p2" class="link" d="M134 170 L 250 170"/>
           <path id="p3" class="link" d="M134 280 C 190 280, 190 170, 250 170"/>
-          <!-- edge to aggregate -->
           <path id="p4" class="link link-agg" d="M335 210 L 335 262"/>
 
-          <!-- clients -->
           <g class="node client" transform="translate(20 30)">
             <rect width="114" height="60" rx="8"/>
             <rect class="layer" x="14" y="14" width="10" height="32" rx="2"/>
@@ -79,7 +77,6 @@
             <text x="48" y="35">Device C</text>
           </g>
 
-          <!-- edge server -->
           <g class="node server" transform="translate(250 130)">
             <rect width="150" height="80" rx="8"/>
             <rect class="layer layer-srv" x="14" y="14" width="10" height="34" rx="2"/>
@@ -91,7 +88,6 @@
             <text class="small" x="14" y="68">remaining layers</text>
           </g>
 
-          <!-- aggregate -->
           <g class="node agg" transform="translate(270 262)">
             <rect width="130" height="48" rx="24"/>
             <text x="65" y="29" text-anchor="middle">Shared model</text>
@@ -99,7 +95,6 @@
           <text class="small annot" x="342" y="242">weights averaged</text>
           <text class="small annot" x="150" y="160">activations</text>
 
-          <!-- moving packets -->
           <circle class="packet" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.2s"><mpath href="#p1"/></animateMotion></circle>
           <circle class="packet" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.6s"><mpath href="#p2"/></animateMotion></circle>
           <circle class="packet" r="4"><animateMotion dur="2.6s" repeatCount="indefinite" begin="2.0s"><mpath href="#p3"/></animateMotion></circle>
@@ -117,33 +112,55 @@
     <section class="block wrap" id="research" aria-labelledby="research-h">
       <h2 id="research-h">Research</h2>
       <div class="block-body">
+
         <article class="paper">
-          <h3>Federated Split Learning: offloading on-device training to edge servers</h3>
-          <p class="venue">AAIML 2026 International Conference, published on IEEE Xplore</p>
+          <h3>Federated Split Learning: Distributed Local Training for Low Computational Unit Clients</h3>
+          <p class="venue">K. H. Rahaman, L. Ferdouse, Y. Liu. International Conference on Advances in Artificial Intelligence and Machine Learning (AAIML), IEEE, 2026.</p>
           <p>
-            Federated Learning keeps data on users' devices, but every device still has to train the whole
-            model, which is slow and costly on phones and sensors. I combined Federated Learning with
-            Split Learning so that each device trains only the first part of the network and offloads the
-            rest to an edge server. Across CNN models, this reduced hardware use on edge devices by up to
-            about 58% and execution time by up to about 60%, without a noticeable loss in accuracy.
+            Federated Learning (FL) trains one shared model across many devices without collecting their data.
+            The catch is that every device has to train the whole model locally. Phones, sensors and other
+            low-capacity devices either slow every training round down or can't take part at all, and the
+            model loses whatever their data would have taught it.
           </p>
+          <p>
+            Federated Split Learning (FSL) borrows the workload-offloading idea from Split Learning. Devices with
+            enough compute train the full model as usual. Low-capacity devices train only the first few layers
+            up to a cut layer, send the intermediate activations to a nearby edge server that runs the heavier
+            layers, and receive the gradients back. Every device's update is then aggregated into the global
+            model as in normal FL, so no device has to be upgraded and its raw data still never leaves it.
+          </p>
+          <ul class="results">
+            <li>Up to about <strong>58% less hardware usage</strong> and <strong>60% less execution time</strong> on edge devices.</li>
+            <li>No noticeable loss in model accuracy compared with standard FL.</li>
+            <li>Tested with LeNet, AlexNet and ResNet-18 on CIFAR-10, Fashion-MNIST and MNIST.</li>
+          </ul>
+          <figure class="shot">
+            <img src="images/fsl-workflow.png" width="1400" height="876" loading="lazy"
+                 alt="FSL workflow: the global server initializes and shares the model; each client checks whether it has high computational capacity. If yes it trains the whole model locally; if not it trains a portion and offloads the rest to the edge server. All clients send updates to the global server, which aggregates them.">
+            <figcaption>The FSL workflow. The left side is the usual FL loop; the right side is the local step that FSL changes.</figcaption>
+          </figure>
           <p class="links">
-            <a href="https://ieeexplore.ieee.org/document/11498179">Read the paper</a>
+            <a href="https://ieeexplore.ieee.org/document/11498179">Read the paper on IEEE Xplore</a>
             <a href="https://github.com/khrahaman/Federated-Split-Learning">View the code</a>
           </p>
         </article>
 
         <article class="paper">
-          <h3>Lightweight Differential Privacy for Federated Learning</h3>
-          <p class="venue">Research at Wilfrid Laurier University</p>
+          <h3>Efficient Federated Learning in Heterogeneous Networks with Synchronized Local Trainings While Ensuring Maximum Client Participation</h3>
+          <p class="venue">Master's thesis, Wilfrid Laurier University, 2026. Supervised by Dr. Lilatul Ferdouse.</p>
           <p>
-            Sharing gradients instead of data is not enough on its own: gradient inversion attacks can
-            rebuild training samples from them. I designed a computationally light training workflow
-            that adds Differential Privacy to Federated Learning to close that gap, and separately
-            reproduced the attack itself with InverseFed to measure the risk.
+            My thesis takes FSL further and tackles the three ways real FL networks are uneven: the devices
+            differ in compute power, their data differs from one another, and the updates they share can leak
+            private data.
           </p>
+          <ul class="results">
+            <li><strong>Uneven devices:</strong> the FSL framework above, which lets low-capacity clients join compute-heavy FL tasks by offloading to an edge server.</li>
+            <li><strong>Uneven data:</strong> integrated existing optimization algorithms for non-IID client data into FSL with minimal changes, and built a large-scale heterogeneous test network to evaluate them.</li>
+            <li><strong>Privacy:</strong> designed <strong>Split-DP</strong>, a differential privacy mechanism for FSL with a formal privacy proof, and showed gradient inversion attacks that reconstruct client data succeed without it and fail with it.</li>
+            <li><strong>Theory:</strong> proved FSL's convergence properties.</li>
+          </ul>
           <p class="links">
-            <a href="https://github.com/khrahaman/Gradient-Inversion-Attack">View the attack code</a>
+            <a href="https://scholars.wlu.ca/etd/2897">Read the thesis</a>
           </p>
         </article>
       </div>
@@ -153,41 +170,260 @@
     <section class="block wrap" id="projects" aria-labelledby="projects-h">
       <h2 id="projects-h">Projects</h2>
       <div class="block-body">
-        <ul class="project-list">
-          <li class="project">
-            <h3><a href="https://github.com/khrahaman/Federated-Split-Learning">Federated Split Learning framework</a></h3>
-            <p>A scalable hybrid of federated and split learning with CNN models. The implementation behind the AAIML 2026 paper.</p>
-            <p class="tech">Python, TensorFlow</p>
+        <p class="section-intro">
+          Every project below links to its code. They're grouped by area; open "How it works" on any of them for the technical details.
+        </p>
+
+        <!-- ---------- Group: distributed and private ML ---------- -->
+        <h3 class="group-title">Distributed and privacy-preserving ML</h3>
+
+        <article class="proj">
+          <h4>Federated Split Learning framework</h4>
+          <p class="tech">Python, TensorFlow</p>
+          <p>
+            The implementation behind the AAIML 2026 paper. It simulates an FL network where each client's
+            model is split at a chosen layer: the client part runs on the CPU (standing in for a weak device)
+            and the rest on the GPU (standing in for the edge server), trained jointly as one model.
+          </p>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>Three model and dataset pairs: LeNet on CIFAR-10, AlexNet on Fashion-MNIST and ResNet-18 on MNIST, with data augmentation for the two larger models.</li>
+              <li>Configurable cut layers, including two ResNet-18 variants that split before or after the first residual block, to measure how much work can move off the device.</li>
+              <li>One gradient tape covers both halves, so the client and server portions are updated together on every step.</li>
+              <li>Weighted Federated Averaging combines client updates, and per-client accuracy and training time are recorded every round.</li>
+            </ul>
+          </details>
+          <p class="links">
+            <a href="https://github.com/khrahaman/Federated-Split-Learning">GitHub</a>
+            <a href="https://ieeexplore.ieee.org/document/11498179">Paper</a>
+          </p>
+        </article>
+
+        <article class="proj">
+          <h4>Optimization algorithms for non-IID data in FSL</h4>
+          <p class="tech">Python, TensorFlow</p>
+          <p>
+            When each client's data looks very different, plain federated averaging drifts. This project tests
+            whether well-known fixes for that problem still work once the model is split between device and edge
+            server, which is the "uneven data" part of my thesis.
+          </p>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>Builds a deliberately skewed 20-client network from Fashion-MNIST: 4 "generalist" clients get a balanced sample of all 10 classes, and 16 "specialist" clients each get 1,000 images from only two classes.</li>
+              <li>Implements <strong>FedProx</strong> (a proximal penalty that keeps local models near the global one), <strong>FedDyn</strong> (a dynamic regularizer using each client's history) and <strong>FedAdam</strong> (an Adam optimizer on the server) on top of the split model.</li>
+              <li>Samples a fraction of clients each round and aggregates their weight changes, weighted by sample count.</li>
+            </ul>
+          </details>
+          <p class="links"><a href="https://github.com/khrahaman/Opt_algorithms_in_FSL">GitHub</a></p>
+        </article>
+
+        <article class="proj">
+          <h4>Gradient inversion attack on Federated Learning</h4>
+          <p class="tech">Python, TensorFlow, PyTorch</p>
+          <p>
+            FL is often described as private because clients share only model updates, never data. This project
+            shows why that isn't enough: from the shared gradients alone, it reconstructs the images a client
+            trained on. It served as the threat model for Split-DP in my thesis.
+          </p>
+          <figure class="shot">
+            <img src="images/gradient-inversion.png" width="1111" height="367" loading="lazy"
+                 alt="Two rows of handwritten digits. The top row shows a client's original training images, 5 1 9 0 1 4 3 2. The bottom row shows the attack's reconstructions, most of which are clearly recognizable as the same digits.">
+            <figcaption>Top: a client's real training images. Bottom: what the attack rebuilt from the client's gradients alone.</figcaption>
+          </figure>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>Runs an FL simulation, captures the gradients a client sends, then starts from random noise and optimizes dummy images until their gradients match the captured ones.</li>
+              <li>Adapts the InverseFed method to TensorFlow, using total-variation regularization to keep reconstructions smooth and multiple random restarts to escape poor local minima.</li>
+              <li>Attacks both a single client's gradients and gradients aggregated across clients, on LeNet with CIFAR-10 and MNIST, with a PyTorch version for comparison.</li>
+            </ul>
+          </details>
+          <p class="links"><a href="https://github.com/khrahaman/Gradient-Inversion-Attack">GitHub</a></p>
+        </article>
+
+        <article class="proj">
+          <h4>Federated intrusion detection for IoT networks</h4>
+          <p class="tech">Python, TensorFlow, scikit-learn, imbalanced-learn</p>
+          <p>
+            Trains an attack detector across several IoT devices without pooling their network logs. The hard part
+            is that each device type records different features, so their data can't simply be averaged together.
+          </p>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>Uses the TON_IoT dataset, whose sensor logs (fridge, thermostat, GPS tracker and others) each have their own columns.</li>
+              <li>Preprocessing builds one global feature space across all devices, fills missing features, label-encodes categories and fits a shared scaler, so every client's model has the same input shape.</li>
+              <li>Each client trains a GRU or LSTM classifier on attack versus normal traffic, with oversampling of the rare attack class, light noise augmentation, learning-rate decay and early stopping.</li>
+              <li>Client models are combined with sample-weighted Federated Averaging and evaluated on accuracy and AUC.</li>
+            </ul>
+          </details>
+          <p class="links"><a href="https://github.com/khrahaman/Adaptive-FL">GitHub</a></p>
+        </article>
+
+        <article class="proj">
+          <h4>Federated Learning from scratch</h4>
+          <p class="tech">Python, TensorFlow</p>
+          <p>
+            A clear, minimal FL implementation I wrote to show how the process works end to end, and the
+            starting point for FSL.
+          </p>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>Splits CIFAR-10 evenly across 5 clients; the server shares a global model, each client trains it locally, and the server averages the results each round.</li>
+              <li>Supports LeNet, AlexNet and ResNet, and tracks global test accuracy round by round.</li>
+              <li>Runs as plain Python (<code>clients.py</code> and <code>server.py</code>) or as a notebook in Colab or Kaggle.</li>
+            </ul>
+          </details>
+          <p class="links"><a href="https://github.com/khrahaman/Federated_Learning">GitHub</a></p>
+        </article>
+
+        <!-- ---------- Group: LLMs and applied AI ---------- -->
+        <h3 class="group-title">LLMs, speech and applied AI</h3>
+
+        <article class="proj">
+          <h4>AI-generated text detector</h4>
+          <p class="tech">Python, PyTorch, Hugging Face Transformers, Streamlit</p>
+          <p>
+            Built at Genuine Technology and Research. It estimates whether a piece of writing was produced by an
+            AI model, without needing to be trained on examples of AI text. You can paste text, upload a file or
+            give it the URL of an article.
+          </p>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>Implements the zero-shot <strong>Binoculars</strong> method with two models, Falcon-7B and Falcon-7B-Instruct: the score divides how surprising the text is to one model by how surprising one model finds the other's predictions. Machine-written text gets a noticeably lower score than human writing.</li>
+              <li>Two thresholds let the user favour overall accuracy or a low false-positive rate, so human writing is rarely flagged by mistake.</li>
+              <li>For URLs it strips navigation, ads and boilerplate with Readability and BeautifulSoup to keep only the article text.</li>
+              <li>Long inputs are split at sentence boundaries into chunks of about 250 words, each scored separately in a Streamlit interface.</li>
+            </ul>
+          </details>
+          <p class="links"><a href="https://github.com/khrahaman/AI_Content_Detector">GitHub</a></p>
+        </article>
+
+        <article class="proj">
+          <h4>Bangla speech-to-text pipeline</h4>
+          <p class="tech">Python, faster-whisper (Whisper large-v3), ReportLab</p>
+          <p>
+            Turned about 3.4 hours of recorded Bangla speeches from a day-long conference into clean,
+            readable transcripts, with Bangla and English versions and summaries delivered as PDFs, all on
+            an ordinary CPU.
+          </p>
+          <ul class="results">
+            <li>Batched inference made transcription about <strong>6.8× faster</strong>: 295 seconds instead of 2,022 for the same test clip.</li>
+          </ul>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>Benchmarked several setups first: the medium Whisper model produced text in the wrong script, the GPU ran out of memory with the large model, and large-v3-turbo was slower than batched large-v3. Whisper large-v3 with int8 quantization on CPU gave the best balance.</li>
+              <li>Switched to batched inference (batch size 8, beam search) with voice-activity detection to skip silence, and fixed the language to Bangla instead of auto-detecting it.</li>
+              <li>Cleaned the output automatically: collapsed words the model repeated in loops, dropped garbled or near-empty segments and grouped lines into paragraphs.</li>
+              <li>Generated bilingual transcript and summary PDFs with ReportLab, embedding a font that renders Bangla script correctly. Resumes where it left off if a long run is interrupted.</li>
+            </ul>
+          </details>
+          <p class="links"><a href="https://github.com/khrahaman/Video_to_Transcript_Converter_-Bangla_Language-">GitHub</a></p>
+        </article>
+
+        <article class="proj">
+          <h4>Autonomous LinkedIn reaction agent</h4>
+          <p class="tech">Python, Selenium, PyAutoGUI, Mixtral-8x7B-Instruct</p>
+          <p>
+            Built at Genuine Technology and Research. An agent that reads posts in a LinkedIn feed and reacts to each one
+            the way a person would, choosing between Like, Celebrate, Support, Love, Insightful and Funny.
+          </p>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>Signs in and collects post links from the feed with Selenium, then opens each post and extracts its text.</li>
+              <li>Prompts Mixtral-8x7B-Instruct through the Hugging Face Inference API to choose the most fitting reaction, and parses the answer safely, defaulting to Like.</li>
+              <li>Applies the reaction in the browser, using Selenium for Like and on-screen image matching with PyAutoGUI for the other reactions in the hover menu.</li>
+              <li>Includes a prototype critique step that asks the model to check its choice against the post's three most common existing reactions.</li>
+            </ul>
+          </details>
+          <p class="links"><a href="https://github.com/khrahaman/Autonomous_Linkedin_Agent">GitHub</a></p>
+        </article>
+
+        <article class="proj">
+          <h4>Local RAG chatbot</h4>
+          <p class="tech">Python, LlamaIndex, llama.cpp, LangChain, Hugging Face</p>
+          <p>
+            A chatbot that answers questions about your own documents with an open-source model running on your own
+            GPU, so nothing is sent to an outside API.
+          </p>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>Runs Mistral-7B-Instruct, quantized to 4 bits (GGUF), through llama.cpp with every layer offloaded to the GPU; it generates about 33 tokens per second.</li>
+              <li>Loads documents (including Word files), splits them into 256-token chunks and embeds them with the gte-large model into a LlamaIndex vector index.</li>
+              <li>Retrieves the most relevant chunks for each question and passes them to the model with a low temperature so answers stay grounded in the source.</li>
+            </ul>
+          </details>
+          <p class="links"><a href="https://github.com/khrahaman/chatbot">GitHub</a></p>
+        </article>
+
+        <!-- ---------- Group: data and NLP ---------- -->
+        <h3 class="group-title">Data engineering and NLP</h3>
+
+        <article class="proj">
+          <h4>Tourist review sentiment analysis</h4>
+          <p class="tech">Python, Selenium, BeautifulSoup, pandas, Keras, NLTK</p>
+          <p>
+            Collected every TripAdvisor review of the main tourist attractions in Bangladesh and measured how
+            visitors feel about each place, using sentiment models trained on a much larger set of reviews.
+          </p>
+          <ul class="results">
+            <li><strong>27,327 reviews</strong> from <strong>179 attractions</strong>, each with a 1–5 star rating, title and text.</li>
+            <li>CNN and LSTM classifiers reached <strong>94.1%</strong> and <strong>94.8%</strong> test accuracy on about 1M hotel reviews.</li>
+          </ul>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>The scraper crawls the country's attraction listings, keeps attractions with more than five reviews, and follows each one's review pages to the end, saving the results with pandas.</li>
+              <li>Text is cleaned (HTML, punctuation, numbers, single letters and stop words removed), tokenized and padded to 100 tokens.</li>
+              <li>Models use frozen 100-dimensional GloVe word embeddings, compared across a simple dense network, a 1D CNN (128 filters) and an LSTM (128 units).</li>
+              <li>The trained models then score every scraped attraction review on a 0–10 sentiment scale.</li>
+            </ul>
+          </details>
+          <p class="links">
+            <a href="https://github.com/khrahaman/tripadvisor_attraction_spots_review_scraper">Scraper on GitHub</a>
+            <a href="https://github.com/khrahaman/Sentiment-Classification-in-Tourist-Reviews">Models on GitHub</a>
+          </p>
+        </article>
+
+        <article class="proj">
+          <h4>Parallel book recommendation system</h4>
+          <p class="tech">Python, PySpark, Spark MLlib, scikit-learn</p>
+          <p>
+            A team course project on recommending books at scale. It shows how much a simple recommender slows
+            down on a large dataset, then speeds up the lookup step by spreading it across Spark workers.
+          </p>
+          <details>
+            <summary>How it works</summary>
+            <ul>
+              <li>Uses the Book-Crossing dataset of user ratings. A nearest-neighbours baseline with cosine similarity shows the cost of the naive approach.</li>
+              <li>Trains an ALS (alternating least squares) collaborative-filtering model in Spark MLlib, after cleaning ratings and indexing users and books consistently.</li>
+              <li>The parallel lookup broadcasts the user's factor vector to every worker and scores item partitions in parallel with a dot-product function, then compares completion time across partition counts. Our report measured up to a 75% reduction in lookup time.</li>
+            </ul>
+          </details>
+          <p class="links"><a href="https://github.com/khrahaman/Parallel-Recommendation-System">GitHub</a></p>
+        </article>
+
+        <!-- ---------- Smaller projects ---------- -->
+        <h3 class="group-title">Smaller projects</h3>
+        <ul class="mini-list">
+          <li>
+            <a href="https://github.com/khrahaman/LLM_API">LLM API with usage credits</a>.
+            A FastAPI service that serves a local model through Ollama, protected by API keys that each carry a limited number of requests.
           </li>
-          <li class="project">
-            <h3><a href="https://github.com/khrahaman/Gradient-Inversion-Attack">Gradient inversion attack with InverseFed</a></h3>
-            <p>Reconstructs training images from nothing but the gradients shared during training, showing why distributed learning needs extra privacy protection.</p>
-            <p class="tech">Python, TensorFlow</p>
+          <li>
+            <a href="https://github.com/khrahaman/food_hall_management_system">Food hall management system</a>.
+            A team-built Django site where customers order from several food stalls, merchants track orders and admins add new stores.
           </li>
-          <li class="project">
-            <h3><a href="https://github.com/khrahaman/Federated_Learning">Federated Learning simulation</a></h3>
-            <p>A multi-client simulation that trains LeNet, AlexNet and ResNet models across any number of simulated devices.</p>
-            <p class="tech">Python, TensorFlow</p>
-          </li>
-          <li class="project">
-            <h3><a href="https://github.com/khrahaman/Parallel-Recommendation-System">Parallel recommendation system</a></h3>
-            <p>Splits recommendation lookups into parallel tasks, cutting lookup time by 75% with no loss in accuracy.</p>
-            <p class="tech">Apache Spark, MLlib</p>
-          </li>
-          <li class="project">
-            <h3><a href="https://github.com/khrahaman/chatbot">RAG chatbot</a></h3>
-            <p>A chatbot that answers from your own documents and switches between several open-source LLMs while staying within tight memory limits.</p>
-            <p class="tech">PyTorch, Hugging Face, llama-cpp-python, LangChain</p>
-          </li>
-          <li class="project">
-            <h3><a href="https://github.com/khrahaman/AI_Content_Detector">AI content detector</a></h3>
-            <p>Estimates whether writing was produced by AI, from pasted text, uploaded documents or a blog URL. Built at Genuine Technology and Research.</p>
-            <p class="tech">Open-source LLMs, LlamaIndex, Streamlit</p>
-          </li>
-          <li class="project">
-            <h3><a href="https://github.com/khrahaman/tripadvisor_attraction_spots_review_scraper">Sentiment classification in tourist reviews</a></h3>
-            <p>Compares a CNN, an LSTM and BERT for classifying the sentiment of written reviews.</p>
-            <p class="tech">scikit-learn, Keras</p>
+          <li>
+            <a href="https://github.com/khrahaman/Code_Queries">Code Queries</a>.
+            A Flask and SQLAlchemy app for saving, editing and commenting on programming questions.
           </li>
         </ul>
       </div>
@@ -201,10 +437,12 @@
           <li>
             <p class="when">Sep 2024 to Apr 2026</p>
             <h3>Research Assistant, Wilfrid Laurier University</h3>
-            <p class="where">Waterloo, Ontario</p>
+            <p class="where">Waterloo, Ontario. Distributed machine learning research, supervised by Dr. Lilatul Ferdouse.</p>
             <ul>
-              <li>Proposed and built the Federated Split Learning framework, published at AAIML 2026.</li>
-              <li>Designed a lightweight Differential Privacy workflow to defend Federated Learning against gradient inversion attacks.</li>
+              <li>Designed and built Federated Split Learning, which lets low-compute edge devices offload the heaviest layers of a CNN to an edge server while still taking part in federated training.</li>
+              <li>Cut on-device hardware usage by up to 58% and training time by up to 60% without a noticeable loss in accuracy; published at IEEE AAIML 2026.</li>
+              <li>Developed Split-DP, a lightweight differential privacy mechanism for FSL with a formal privacy proof, and showed that gradient inversion attacks fail against it.</li>
+              <li>Proved FSL's convergence and extended it to non-IID client data on a large-scale heterogeneous testbed.</li>
             </ul>
           </li>
           <li>
@@ -212,8 +450,8 @@
             <h3>Junior Software Engineer (Applied AI), Genuine Technology and Research Ltd.</h3>
             <p class="where">Dhaka, Bangladesh</p>
             <ul>
-              <li>Built an AI content detector that works on text, uploaded files and blog URLs.</li>
-              <li>Automated LinkedIn engagement by classifying each post's sentiment and reacting to match.</li>
+              <li>Built an AI-generated text detector using the zero-shot Binoculars method with a pair of Falcon-7B models, accepting text, files and article URLs through a Streamlit app.</li>
+              <li>Built an autonomous LinkedIn agent that uses Mixtral-8x7B-Instruct to choose a reaction for each post in the feed and applies it in the browser.</li>
             </ul>
           </li>
         </ol>
@@ -225,7 +463,7 @@
             <dd>Wilfrid Laurier University, Waterloo. Graduated April 2026.</dd>
           </div>
           <div>
-            <dt>Bachelor of Computer Science and Engineering</dt>
+            <dt>Bachelor of Science in Computer Science and Engineering</dt>
             <dd>BRAC University, Dhaka. Graduated January 2024.</dd>
           </div>
         </dl>
@@ -238,10 +476,11 @@
       <div class="block-body">
         <dl class="skills">
           <div><dt>Languages</dt><dd>Python, C++, C, SQL</dd></div>
-          <div><dt>Machine learning</dt><dd>TensorFlow, PyTorch, neural networks, regression models, LLMs, RAG</dd></div>
-          <div><dt>Data</dt><dd>PostgreSQL, SQLAlchemy, data pipelines, data analysis</dd></div>
-          <div><dt>Backend and infrastructure</dt><dd>FastAPI, Streamlit, REST APIs, Docker, Google Cloud</dd></div>
-          <div><dt>Tools and practice</dt><dd>Git, Git LFS, GitHub CI/CD, Agile, system design, object-oriented design</dd></div>
+          <div><dt>Machine learning and AI</dt><dd>TensorFlow, Keras, PyTorch, scikit-learn, Hugging Face Transformers, LangChain, LlamaIndex, llama.cpp, Whisper, CNNs, RNNs (LSTM, GRU), LLMs, RAG</dd></div>
+          <div><dt>Distributed and private ML</dt><dd>Federated Learning, Split Learning, Differential Privacy, FedProx, FedDyn, FedAdam, PySpark (MLlib)</dd></div>
+          <div><dt>Backend and data</dt><dd>FastAPI, Flask, Streamlit, REST APIs, PostgreSQL, SQLAlchemy, pandas, Selenium, BeautifulSoup</dd></div>
+          <div><dt>Cloud and tools</dt><dd>Google Cloud Platform, Docker, Git, Git LFS, GitHub CI/CD, Ollama</dd></div>
+          <div><dt>Practices</dt><dd>Object-oriented design, data structures and algorithms, system design, testing and debugging, Agile</dd></div>
         </dl>
       </div>
     </section>

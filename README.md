@@ -10,7 +10,8 @@ Personal portfolio of Kazi Habibur Rahaman. Plain HTML, CSS and JavaScript, with
 | `styles.css` | Colors, fonts and layout. Colors are the variables at the top. |
 | `script.js` | Footer year, plus pausing the animation for reduced-motion users. |
 | `favicon.svg` | Browser tab icon. |
-| `resume.pdf` | Linked from the "Download resume" buttons. Replace it to update. |
+| `Resume_of_Kazi_Habibur_Rahaman.pdf` | Linked from the "Download resume" buttons. Replace it (same name) to update. |
+| `images/` | FSL workflow diagram and gradient inversion results, copied from the project repos. |
 
 ## Publish on GitHub Pages
 
